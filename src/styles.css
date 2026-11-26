@@ -467,9 +467,27 @@ body {
   .skill-groups,
   .project-grid { grid-template-columns: 1fr; }
 
-  /* 手机上组合行改为上下堆叠 */
-  .duo-row { grid-template-columns: 1fr; }
-  .duo-row .m-slot img { height: auto; }
+  /* 展示区：固定高度 + 横向滑动，保证窄屏可读 */
+  .shot.wide,
+  .shot.strip,
+  .shot.duo-row {
+    display: flex;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scrollbar-width: none;
+    scroll-snap-type: x proximity;
+  }
+  .shot.wide::-webkit-scrollbar,
+  .shot.strip::-webkit-scrollbar,
+  .shot.duo-row::-webkit-scrollbar { display: none; }
+
+  .shot.wide img { height: 70vh; width: auto; }
+  .shot.strip { gap: 8px; padding: 0 8px; }
+  .shot.strip img { height: 65vh; width: auto; flex: 0 0 auto; }
+  .shot.duo-row { gap: 8px; }
+  .shot.duo-row img { scroll-snap-align: center; height: 60vh; width: auto; }
+  .duo-row .wide-slot { flex: 0 0 auto; }
+  .duo-row .m-slot { flex: 0 0 auto; }
 
   .show-card {
     top: 60px;
