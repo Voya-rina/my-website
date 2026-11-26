@@ -17,13 +17,13 @@
 ├─ README.md              # 本文件
 ├─ .gitignore             # 忽略规则
 ├─ docs/                  # 问答、需求、AI 记录、测试记录
-│  ├─ git-basics.md       # G1-4：Git 基础说明（约 150 字）
-│  ├─ f1-answer.md        # F1：前端组成与运行问答
+│  ├─ G1_Git基础说明.md   # G1-4：Git 基础说明（约 150 字）
 │  ├─ f2-theme-bug/       # F2：失效主题按钮的修复与验证记录
-│  ├─ g2-test-record.md   # G2：分类筛选测试记录
-│  ├─ k6-issue-report.md  # K6：求助信息报告
-│  ├─ ai-collab.md        # AI 协作记录
-│  └─ screenshots/        # 360px / 1280px 截图与验证记录
+│  ├─ G2_测试记录.md      # G2：分类筛选测试记录
+│  ├─ G3_复现记录.md      # G3：恢复练习与复现验证记录
+│  ├─ K6_问题报告.md      # K6：求助信息报告
+│  ├─ F3_AI协作记录.md    # F3：AI 协作记录
+│  └─ screenshots/        # 360px / 1280px 截图（浅色 / 深色）
 ├─ assets/                # 项目展示截图（浅色 / 深色）
 │  └─ projectshot/       # 全部截图文件
 │     ├─ ticket-request-light.png / ticket-request-dark.png
