@@ -154,6 +154,8 @@ body {
   margin-bottom: 8px;
 }
 
+.name-nowrap { white-space: nowrap; }
+
 .handle {
   font-size: clamp(20px, 3.5vw, 28px);
   font-weight: 600;
