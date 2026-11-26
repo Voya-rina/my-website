@@ -25,11 +25,12 @@
 
   <header class="nav">
     <nav class="nav-inner" aria-label="主导航">
-      <a class="brand" href="#top">Voyarina</a>
+      <a class="brand" href="#top"><img class="brand-avatar" src="https://avatars.githubusercontent.com/u/87115797?v=4" alt="">Voyarina</a>
       <div class="nav-links" id="nav-links">
         <a href="#about">简介</a>
-        <a href="#skills">技能</a>
         <a href="#projects">项目</a>
+        <a href="#showcase">展示</a>
+        <a href="#skills">技能</a>
         <a href="#contact">联系</a>
       </div>
       <div class="nav-actions">
@@ -58,16 +59,60 @@
       </div>
     </section>
 
-    <section id="skills" class="section">
-      <h2>技能</h2>
-      <div class="skill-groups" id="skill-groups"></div>
-    </section>
-
     <section id="projects" class="section">
       <h2>项目</h2>
       <div class="filter-bar" id="filter-bar" role="group" aria-label="按分类筛选项目"></div>
       <p class="project-count" id="project-count" aria-live="polite"></p>
       <div class="project-grid" id="project-grid"></div>
+    </section>
+
+    <section id="showcase" class="section">
+      <h2>展示</h2>
+      <aside class="show-card" aria-live="polite">
+        <div class="show-card-inner" id="show-card-inner">
+          <div class="project-head">
+            <h3 id="show-name"></h3>
+            <span class="project-tag" id="show-tag"></span>
+          </div>
+          <p class="show-desc" id="show-desc"></p>
+          <a class="project-link" id="show-link" target="_blank" rel="noopener">查看仓库 →</a>
+        </div>
+      </aside>
+      <div class="showcase-list" id="showcase-list">
+        <figure class="shot wide" data-project="ticket-request" data-category="工具">
+          <img class="img-light" src="../assets/ticket-request-light.png" alt="ticket-request 浅色主题界面" loading="lazy">
+          <img class="img-dark" src="../assets/ticket-request-dark.png" alt="ticket-request 深色主题界面" loading="lazy">
+        </figure>
+        <figure class="shot wide" data-project="QuestEdu" data-category="教育">
+          <img class="img-light" src="../assets/questedu-light.png" alt="QuestEdu 教师控制台浅色界面" loading="lazy">
+          <img class="img-dark" src="../assets/questedu-dark.png" alt="QuestEdu 教师控制台深色界面" loading="lazy">
+        </figure>
+        <figure class="shot strip strip-4" data-project="CaliEdu" data-category="教育">
+          <img class="img-light" src="../assets/caliedu-light-1.jpg" alt="CaliEdu 课程学习页（浅色）" loading="lazy">
+          <img class="img-light" src="../assets/caliedu-light-2.jpg" alt="CaliEdu 首页（浅色）" loading="lazy">
+          <img class="img-light" src="../assets/caliedu-light-3.jpg" alt="CaliEdu 资料列表（浅色）" loading="lazy">
+          <img class="img-light" src="../assets/caliedu-light-4.jpg" alt="CaliEdu 学习记录（浅色）" loading="lazy">
+          <img class="img-dark" src="../assets/caliedu-dark-1.jpg" alt="CaliEdu 课程学习页（深色）" loading="lazy">
+          <img class="img-dark" src="../assets/caliedu-dark-2.jpg" alt="CaliEdu 首页（深色）" loading="lazy">
+          <img class="img-dark" src="../assets/caliedu-dark-3.jpg" alt="CaliEdu 资料列表（深色）" loading="lazy">
+          <img class="img-dark" src="../assets/caliedu-dark-4.jpg" alt="CaliEdu 学习记录（深色）" loading="lazy">
+        </figure>
+        <figure class="shot strip strip-4" data-project="ZZUPocket" data-category="校园">
+          <img class="img-light" src="../assets/zzupocket-light-1.jpg" alt="ZZUPocket 首页（浅色）" loading="lazy">
+          <img class="img-light" src="../assets/zzupocket-light-2.jpg" alt="ZZUPocket 课程表（浅色）" loading="lazy">
+          <img class="img-light" src="../assets/zzupocket-light-3.jpg" alt="ZZUPocket 电费统计（浅色）" loading="lazy">
+          <img class="img-light" src="../assets/zzupocket-light-4.jpg" alt="ZZUPocket 教室占用（浅色）" loading="lazy">
+          <img class="img-dark" src="../assets/zzupocket-dark-1.jpg" alt="ZZUPocket 首页（深色）" loading="lazy">
+          <img class="img-dark" src="../assets/zzupocket-dark-2.jpg" alt="ZZUPocket 课程表（深色）" loading="lazy">
+          <img class="img-dark" src="../assets/zzupocket-dark-3.jpg" alt="ZZUPocket 电费统计（深色）" loading="lazy">
+          <img class="img-dark" src="../assets/zzupocket-dark-4.jpg" alt="ZZUPocket 教室占用（深色）" loading="lazy">
+        </figure>
+      </div>
+    </section>
+
+    <section id="skills" class="section">
+      <h2>技能</h2>
+      <div class="skill-groups" id="skill-groups"></div>
     </section>
 
     <section id="contact" class="section">
@@ -78,7 +123,7 @@
   </main>
 
   <footer class="footer">
-    <p>© <span id="year"></span> Voyarina · 用原生 HTML / CSS / JavaScript 构建</p>
+    <p>© <span id="year"></span> Voyarina</p>
   </footer>
 
   <script src="data/projects.js"></script>

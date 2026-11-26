@@ -84,11 +84,21 @@ body {
 }
 
 .brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
   font-size: 17px;
   font-weight: 600;
   letter-spacing: -0.02em;
   color: var(--text);
   text-decoration: none;
+}
+
+.brand-avatar {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  display: block;
 }
 
 .nav-links { display: flex; gap: 28px; }
@@ -321,6 +331,88 @@ body {
 }
 .project-link:hover { text-decoration: underline; }
 
+/* ---------- 展示 ---------- */
+#showcase {
+  max-width: none;
+  padding-left: 0;
+  padding-right: 0;
+}
+#showcase h2 {
+  max-width: 980px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 24px;
+}
+
+.show-card {
+  position: sticky;
+  top: 64px;
+  width: min(340px, calc(100vw - 48px));
+  margin: 0 24px calc(-1 * var(--card-h, 200px));
+  z-index: 40;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 22px;
+  box-shadow: var(--shadow-hover);
+}
+
+.show-card-inner {
+  transition: opacity 0.16s ease, transform 0.16s ease;
+}
+.show-card-inner.fading {
+  opacity: 0;
+  transform: translateY(6px);
+}
+
+.show-desc {
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin: 10px 0 14px;
+}
+
+.shot {
+  margin: 0 0 40px;
+  filter: grayscale(1);
+  opacity: 0.4;
+  transition: filter 0.45s ease, opacity 0.45s ease;
+  animation: shotIn 0.4s ease;
+}
+.shot.active {
+  filter: none;
+  opacity: 1;
+}
+.shot.hidden { display: none; }
+.shot + .shot {
+  border-top: 1px solid var(--border);
+  padding-top: 16px;
+}
+
+@keyframes shotIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: none; }
+}
+
+.shot img {
+  width: 100%;
+  height: 75vh;
+  object-fit: cover;
+  display: block;
+}
+
+.shot.wide { padding: 0; }
+
+.shot.strip {
+  display: grid;
+  gap: 0;
+  padding: 0;
+}
+.strip-4 { grid-template-columns: repeat(4, 1fr); }
+.strip-2 { grid-template-columns: repeat(2, 1fr); }
+
+[data-theme="dark"] .shot .img-light { display: none; }
+[data-theme="light"] .shot .img-dark { display: none; }
+
 /* ---------- 联系 ---------- */
 .contact-text {
   font-size: 17px;
@@ -364,6 +456,17 @@ body {
 
   .skill-groups,
   .project-grid { grid-template-columns: 1fr; }
+
+  .show-card {
+    top: 60px;
+    width: auto;
+    margin: 0 12px calc(-1 * var(--card-h, 200px));
+    z-index: 40;
+  }
+  .shot { margin-bottom: 24px; }
+
+  /* 手机上竖屏条改为完整缩略图，避免裁成细条 */
+  .shot img { height: auto; }
 
   .hero { padding: 110px 20px 48px; }
   .section { padding: 36px 20px; }

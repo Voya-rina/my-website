@@ -24,6 +24,11 @@
 │  ├─ k6-issue-report.md  # K6：求助信息报告
 │  ├─ ai-collab.md        # AI 协作记录
 │  └─ screenshots/        # 360px / 1280px 截图与验证记录
+├─ assets/                # 项目展示截图（浅色 / 深色）
+│  ├─ ticket-request-light.png / ticket-request-dark.png
+│  ├─ questedu-light.png / questedu-dark.png
+│  ├─ caliedu-light.jpg / caliedu-dark.jpg
+│  └─ zzupocket-light.jpg / zzupocket-dark.jpg
 └─ src/                   # 网站源代码与入口
    ├─ index.html          # 头像等静态资源直接引用 GitHub CDN
    ├─ styles.css
@@ -61,7 +66,8 @@ npx serve .
 
 - 导航、个人介绍、技能展示、项目展示、联系信息
 - 项目数据与展示逻辑分离：`src/data/projects.js` 只存数据，`src/app.js` 负责渲染
-- 项目分类筛选：按数据文件中的分类自动生成筛选按钮，可查看全部或单个分类
+- 项目分类筛选：按数据文件中的分类自动生成筛选按钮，可查看全部或单个分类，筛选同时作用于项目卡片与展示区
+- 展示区：四个项目的真实运行截图，全部铺满宽度并统一节高；截图随主题自动切换浅 / 深版本，手机截图按项目横向排满；当前项目彩色高亮、其余灰度弱化，左侧卡片随滚动联动项目信息（移动端固定在顶部）
 - 主题切换：浅色 / 深色，选择保存在 localStorage，刷新后保留；存储不可用时仍可切换
 - 响应式布局：360px 与 1280px 视口下均可读、可操作
 - 键盘可访问：筛选与主题按钮可聚焦，焦点可见，图片有替代文本

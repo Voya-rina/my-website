@@ -115,14 +115,21 @@
       btn.dataset.filter = opt;
       btn.textContent = opt === "all" ? "全部" : opt;
       btn.setAttribute("aria-pressed", opt === activeFilter ? "true" : "false");
-      btn.addEventListener("click", function () {
-        activeFilter = opt;
-        renderFilterBar();
-        renderProjects(filterProjects());
-      });
       filterBar.appendChild(btn);
     });
   }
+
+  /* 事件委托：按钮被重建后监听依然有效 */
+  filterBar.addEventListener("click", function (e) {
+    var btn = e.target.closest("button");
+    if (!btn) return;
+    var opt = btn.getAttribute("data-filter");
+    if (!opt || opt === activeFilter) return;
+    activeFilter = opt;
+    renderFilterBar();
+    renderProjects(filterProjects());
+    syncShowcase();
+  });
 
   function filterProjects() {
     if (activeFilter === "all") return PROJECTS;
@@ -132,6 +139,92 @@
   if (typeof PROJECTS !== "undefined" && Array.isArray(PROJECTS)) {
     renderFilterBar();
     renderProjects(filterProjects());
+  }
+
+  /* ---------- 展示区：滚动联动卡片 + 与筛选同步 ---------- */
+
+  var figures = Array.prototype.slice.call(document.querySelectorAll(".shot"));
+  var showInner = document.getElementById("show-card-inner");
+  var showName = document.getElementById("show-name");
+  var showTag = document.getElementById("show-tag");
+  var showDesc = document.getElementById("show-desc");
+  var showLink = document.getElementById("show-link");
+  var currentShow = null;
+
+  function findProject(name) {
+    var p = null;
+    PROJECTS.forEach(function (x) {
+      if (x.name === name) p = x;
+    });
+    return p;
+  }
+
+  function setActiveFigure(name) {
+    figures.forEach(function (f) {
+      f.classList.toggle("active", f.getAttribute("data-project") === name);
+    });
+  }
+
+  function setShowCard(name) {
+    setActiveFigure(name);
+    var p = findProject(name);
+    if (!p) return;
+    var first = currentShow === null;
+    if (name === currentShow) return;
+    currentShow = name;
+
+    if (first) {
+      /* 首次同步填充，保证卡片在量高前已是完整尺寸 */
+      showName.textContent = p.name;
+      showTag.textContent = p.category;
+      showDesc.textContent = p.description;
+      showLink.href = p.link;
+      return;
+    }
+
+    showInner.classList.add("fading");
+    setTimeout(function () {
+      showName.textContent = p.name;
+      showTag.textContent = p.category;
+      showDesc.textContent = p.description;
+      showLink.href = p.link;
+      showInner.classList.remove("fading");
+    }, 160);
+  }
+
+  function syncShowcase() {
+    var firstVisible = null;
+    figures.forEach(function (f) {
+      var show = activeFilter === "all" || f.getAttribute("data-category") === activeFilter;
+      f.classList.toggle("hidden", !show);
+      if (show && !firstVisible) firstVisible = f.getAttribute("data-project");
+    });
+    if (firstVisible) setShowCard(firstVisible);
+  }
+
+  syncShowcase();
+
+  /* 卡片高度写入 CSS 变量，使其初始叠加在第一张截图左上角 */
+  var showCardEl = document.querySelector(".show-card");
+  function sizeCard() {
+    document.documentElement.style.setProperty("--card-h", showCardEl.offsetHeight + "px");
+  }
+  if ("ResizeObserver" in window) {
+    new ResizeObserver(sizeCard).observe(showCardEl);
+  }
+  window.addEventListener("resize", sizeCard);
+  window.addEventListener("load", sizeCard);
+  sizeCard();
+
+  if ("IntersectionObserver" in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting) {
+          setShowCard(en.target.getAttribute("data-project"));
+        }
+      });
+    }, { rootMargin: "-40% 0px -40% 0px" });
+    figures.forEach(function (f) { io.observe(f); });
   }
 
   /* ---------- 技能渲染 ---------- */
