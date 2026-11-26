@@ -11,13 +11,13 @@ var PROJECTS = [
   {
     name: "QuestEdu",
     category: "教育",
-    description: "基于苏格拉底追问的 AI 驱动教学系统，AI 通识课作业项目。",
+    description: "基于苏格拉底追问的 AI 驱动教学系统，AI 通识课大作业项目。",
     link: "https://github.com/Voya-rina/QuestEdu"
   },
   {
     name: "CaliEdu",
     category: "教育",
-    description: "Kotlin 开发的教育方向实践项目，详情见仓库。",
+    description: "基于QuestEdu 的 kotlin 安卓重写教育方向实践项目。",
     link: "https://github.com/Voya-rina/CaliEdu"
   },
   {

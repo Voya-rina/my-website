@@ -20,13 +20,12 @@
 │  ├─ git-basics.md       # G1-4：Git 基础说明（约 150 字）
 │  ├─ f1-answer.md        # F1：前端组成与运行问答
 │  ├─ f2-theme-bug/       # F2：失效主题按钮的修复与验证记录
+│  ├─ g2-test-record.md   # G2：分类筛选测试记录
 │  ├─ k6-issue-report.md  # K6：求助信息报告
 │  ├─ ai-collab.md        # AI 协作记录
 │  └─ screenshots/        # 360px / 1280px 截图与验证记录
-├─ assets/                # 图片等资源
-│  └─ avatar.svg
 └─ src/                   # 网站源代码与入口
-   ├─ index.html
+   ├─ index.html          # 头像等静态资源直接引用 GitHub CDN
    ├─ styles.css
    ├─ app.js              # 展示逻辑
    └─ data/

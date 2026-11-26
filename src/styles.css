@@ -128,7 +128,7 @@ body {
 .hero {
   max-width: 720px;
   margin: 0 auto;
-  padding: 160px 24px 100px;
+  padding: 136px 24px 64px;
   text-align: center;
 }
 
@@ -151,7 +151,15 @@ body {
   font-weight: 700;
   letter-spacing: -0.025em;
   line-height: 1.1;
-  margin-bottom: 20px;
+  margin-bottom: 8px;
+}
+
+.handle {
+  font-size: clamp(20px, 3.5vw, 28px);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--accent);
+  margin-bottom: 22px;
 }
 
 .lede {
@@ -188,21 +196,21 @@ body {
 .section {
   max-width: 980px;
   margin: 0 auto;
-  padding: 70px 24px;
+  padding: 52px 24px;
 }
 
 .section h2 {
   font-size: clamp(30px, 5vw, 44px);
   font-weight: 700;
   letter-spacing: -0.02em;
-  margin-bottom: 36px;
+  margin-bottom: 26px;
 }
 
 /* ---------- 技能 ---------- */
 .skill-groups {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
 }
 
 .skill-card {
@@ -229,8 +237,8 @@ body {
 /* ---------- 项目 ---------- */
 .project-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
 }
 
 .project-card {
@@ -321,6 +329,9 @@ body {
     border-top: 1px solid var(--border);
   }
 
-  .hero { padding: 120px 20px 70px; }
-  .section { padding: 50px 20px; }
+  .skill-groups,
+  .project-grid { grid-template-columns: 1fr; }
+
+  .hero { padding: 110px 20px 48px; }
+  .section { padding: 36px 20px; }
 }

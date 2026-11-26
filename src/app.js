@@ -101,9 +101,9 @@
 
   var SKILLS = [
     { group: "前端", items: ["HTML", "CSS", "JavaScript"] },
-    { group: "编程语言", items: ["Python", "Kotlin"] },
+    { group: "编程语言", items: ["Python", "Kotlin", "C 语言"] },
     { group: "工具", items: ["Git", "GitHub", "VS Code"] },
-    { group: "学习中", items: ["嵌入式开发", "电赛", "AI 应用"] }
+    { group: "学习中", items: ["嵌入式开发", "电赛", "LLM 应用"] }
   ];
 
   var skillGroups = document.getElementById("skill-groups");
