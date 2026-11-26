@@ -91,10 +91,47 @@
       card.appendChild(link);
       grid.appendChild(card);
     });
+
+    document.getElementById("project-count").textContent = "共 " + list.length + " 个项目";
+  }
+
+  /* ---------- 项目筛选（分类来自数据文件，自动生成） ---------- */
+
+  var filterBar = document.getElementById("filter-bar");
+  var activeFilter = "all";
+
+  function renderFilterBar() {
+    var categories = [];
+    PROJECTS.forEach(function (p) {
+      if (categories.indexOf(p.category) === -1) categories.push(p.category);
+    });
+
+    var options = ["all"].concat(categories);
+    filterBar.innerHTML = "";
+    options.forEach(function (opt) {
+      var btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "filter-btn" + (opt === activeFilter ? " is-active" : "");
+      btn.dataset.filter = opt;
+      btn.textContent = opt === "all" ? "全部" : opt;
+      btn.setAttribute("aria-pressed", opt === activeFilter ? "true" : "false");
+      btn.addEventListener("click", function () {
+        activeFilter = opt;
+        renderFilterBar();
+        renderProjects(filterProjects());
+      });
+      filterBar.appendChild(btn);
+    });
+  }
+
+  function filterProjects() {
+    if (activeFilter === "all") return PROJECTS;
+    return PROJECTS.filter(function (p) { return p.category === activeFilter; });
   }
 
   if (typeof PROJECTS !== "undefined" && Array.isArray(PROJECTS)) {
-    renderProjects(PROJECTS);
+    renderFilterBar();
+    renderProjects(filterProjects());
   }
 
   /* ---------- 技能渲染 ---------- */
