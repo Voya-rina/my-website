@@ -25,10 +25,12 @@
 │  ├─ ai-collab.md        # AI 协作记录
 │  └─ screenshots/        # 360px / 1280px 截图与验证记录
 ├─ assets/                # 项目展示截图（浅色 / 深色）
-│  ├─ ticket-request-light.png / ticket-request-dark.png
-│  ├─ questedu-light.png / questedu-dark.png
-│  ├─ caliedu-light.jpg / caliedu-dark.jpg
-│  └─ zzupocket-light.jpg / zzupocket-dark.jpg
+│  └─ projectshot/       # 全部截图文件
+│     ├─ ticket-request-light.png / ticket-request-dark.png
+│     ├─ questedu-light.png / questedu-dark.png
+│     ├─ questedu-mobile-light.png / questedu-mobile-dark.png
+│     ├─ caliedu-light-1~4.jpg / caliedu-dark-1~4.jpg
+│     └─ zzupocket-light-1~4.jpg / zzupocket-dark-1~4.jpg
 └─ src/                   # 网站源代码与入口
    ├─ index.html          # 头像等静态资源直接引用 GitHub CDN
    ├─ styles.css

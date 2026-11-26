@@ -17,13 +17,13 @@ var PROJECTS = [
   {
     name: "CaliEdu",
     category: "教育",
-    description: "基于QuestEdu 的 kotlin 安卓重写教育方向实践项目。",
+    description: "基于 QuestEdu 的 kotlin 安卓重写教育方向实践项目。",
     link: "https://github.com/Voya-rina/CaliEdu"
   },
   {
     name: "ZZUPocket",
     category: "校园",
-    description: "郑州大学校园工具项目的开发仓库（fork 自 3beuml/ZZUPocket）。",
+    description: "郑州大学校园工具项目的开发仓库，fork 自 3beuml/ZZUPocket，参与contribute。",
     link: "https://github.com/Voya-rina/ZZUPocket"
   }
 ];

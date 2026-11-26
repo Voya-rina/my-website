@@ -395,8 +395,7 @@ body {
 
 .shot img {
   width: 100%;
-  height: 75vh;
-  object-fit: cover;
+  height: auto;
   display: block;
 }
 
@@ -409,6 +408,17 @@ body {
 }
 .strip-4 { grid-template-columns: repeat(4, 1fr); }
 .strip-2 { grid-template-columns: repeat(2, 1fr); }
+
+/* 网页截图居左占大列，手机截图居右窄列，随主题切换 */
+.duo-row {
+  display: grid;
+  grid-template-columns: 1fr clamp(200px, 22vw, 340px);
+}
+.duo-row .m-slot img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
 
 [data-theme="dark"] .shot .img-light { display: none; }
 [data-theme="light"] .shot .img-dark { display: none; }
@@ -457,6 +467,10 @@ body {
   .skill-groups,
   .project-grid { grid-template-columns: 1fr; }
 
+  /* 手机上组合行改为上下堆叠 */
+  .duo-row { grid-template-columns: 1fr; }
+  .duo-row .m-slot img { height: auto; }
+
   .show-card {
     top: 60px;
     width: auto;
@@ -464,9 +478,6 @@ body {
     z-index: 40;
   }
   .shot { margin-bottom: 24px; }
-
-  /* 手机上竖屏条改为完整缩略图，避免裁成细条 */
-  .shot img { height: auto; }
 
   .hero { padding: 110px 20px 48px; }
   .section { padding: 36px 20px; }
