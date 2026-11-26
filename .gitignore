@@ -1,0 +1,17 @@
+# 系统文件
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# 编辑器配置
+.vscode/
+.idea/
+
+# 临时文件与日志
+*.log
+*.tmp
+*~
+
+# 依赖与构建输出（本项目为纯静态网站，暂无依赖；后续引入包管理器时提交锁定文件）
+node_modules/
+dist/
