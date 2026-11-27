@@ -151,6 +151,10 @@
   var showLink = document.getElementById("show-link");
   var currentShow = null;
 
+  showTag.addEventListener("click", function () {
+    document.getElementById("filter-bar").scrollIntoView({ behavior: "smooth", block: "center" });
+  });
+
   function findProject(name) {
     var p = null;
     PROJECTS.forEach(function (x) {
@@ -230,10 +234,10 @@
   /* ---------- 技能渲染 ---------- */
 
   var SKILLS = [
-    { group: "前端", items: ["HTML", "CSS", "JavaScript"] },
-    { group: "编程语言", items: ["Python", "Kotlin", "C 语言"] },
-    { group: "工具", items: ["Git", "GitHub", "VS Code"] },
-    { group: "学习中", items: ["嵌入式开发", "电赛", "LLM 应用"] }
+    { group: "前端开发", items: ["HTML", "CSS", "JavaScript", "XAML", "WinUI 3"] },
+    { group: "编程语言", items: ["Python", "Kotlin", "C 语言", "C#", ".NET"] },
+    { group: "开发工具", items: ["Git", "GitHub", "VS Code", "Visual Studio"] },
+    { group: "AI", items: ["LLM 应用", "Prompt 工程", "RAG", "Fine-tuning"] }
   ];
 
   var skillGroups = document.getElementById("skill-groups");
@@ -257,6 +261,103 @@
     card.appendChild(tags);
     skillGroups.appendChild(card);
   });
+
+  /* ---------- 座右铭上方：技能词云背景（随页面滚动左右漂移） ---------- */
+
+  var cloud = document.getElementById("wordcloud");
+  var skillsSection = document.getElementById("skills");
+
+  if (cloud && skillsSection && typeof SKILLS !== "undefined") {
+    var items = [];
+    SKILLS.forEach(function (s) { items = items.concat(s.items); });
+
+    var ROWS = 10;
+    var cloudRows = [];
+    for (var r = 0; r < ROWS; r++) {
+      var pool = items.slice();
+      for (var i = pool.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var t = pool[i];
+        pool[i] = pool[j];
+        pool[j] = t;
+      }
+      var seq = pool.join(" | ");
+      var line = document.createElement("div");
+      line.className = "cloud-row";
+      line.textContent = seq;
+      line.dataset.dir = r % 2 === 0 ? "1" : "-1";
+      /* 先挂载再测量：游离元素的 scrollWidth 恒为 0，无法用来判断宽度 */
+      cloud.appendChild(line);
+      var need = document.documentElement.clientWidth + 240;
+      while (line.scrollWidth < need) {
+        line.textContent += " | " + seq;
+      }
+      cloudRows.push(line);
+    }
+
+    var reduceMotion = window.matchMedia &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    if (!reduceMotion) {
+      var cloudTicking = false;
+      var updateCloud = function () {
+        cloudTicking = false;
+        var rect = skillsSection.getBoundingClientRect();
+        var progress = (window.innerHeight - rect.top) /
+          (window.innerHeight + rect.height);
+        cloudRows.forEach(function (row) {
+          var dir = Number(row.dataset.dir);
+          row.style.transform =
+            "translateX(" + dir * (progress - 0.5) * 120 + "px)";
+        });
+      };
+      window.addEventListener("scroll", function () {
+        if (!cloudTicking) {
+          cloudTicking = true;
+          requestAnimationFrame(updateCloud);
+        }
+      }, { passive: true });
+      updateCloud();
+    }
+  }
+
+  /* ---------- 联系：QQ 一键复制 ---------- */
+
+  var qqBtn = document.getElementById("qq-copy");
+
+  function fallbackCopy(text) {
+    var ta = document.createElement("textarea");
+    ta.value = text;
+    ta.style.position = "fixed";
+    ta.style.opacity = "0";
+    document.body.appendChild(ta);
+    ta.select();
+    try { document.execCommand("copy"); } catch (e) { /* 忽略 */ }
+    document.body.removeChild(ta);
+  }
+
+  if (qqBtn) {
+    qqBtn.addEventListener("click", function () {
+      var qq = qqBtn.getAttribute("data-qq");
+      var hint = qqBtn.querySelector(".copy-hint");
+
+      function done() {
+        if (!hint) return;
+        hint.textContent = "已复制 ✓";
+        setTimeout(function () { hint.textContent = "点击复制"; }, 1500);
+      }
+
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(qq).then(done, function () {
+          fallbackCopy(qq);
+          done();
+        });
+      } else {
+        fallbackCopy(qq);
+        done();
+      }
+    });
+  }
 
   /* ---------- 页脚年份 ---------- */
 
