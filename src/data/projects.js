@@ -17,7 +17,7 @@ var PROJECTS = [
   {
     name: "CaliEdu",
     category: "教育",
-    description: "基于 QuestEdu 的 kotlin 安卓重写教育方向实践项目。",
+    description: "基于 QuestEdu 的 kotlin 安卓重写，教育方向实践项目。",
     link: "https://github.com/Voya-rina/CaliEdu"
   },
   {
